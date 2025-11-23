@@ -18,7 +18,38 @@
     }
   }
 
-  // Initially fetch todos on page load
+  async function addTodo(event: SubmitEvent) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+
+    if (!title || !description) {
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8080/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, description }),
+      });
+
+      if (response.status === 200) {
+        form.reset();
+        await fetchTodos();
+      } else {
+        console.error("Failed to add todo");
+      }
+    } catch (e) {
+      console.error("Could not connect to server.", e);
+    }
+  }
+
   $effect(() => {
     fetchTodos();
   });
@@ -36,10 +67,10 @@
   </div>
 
   <h2 class="todo-list-form-header">Add a Todo</h2>
-  <form class="todo-list-form">
-    <input placeholder="Title" name="title" />
-    <input placeholder="Description" name="description" />
-    <button>Add Todo</button>
+  <form class="todo-list-form" onsubmit={addTodo}>
+    <input placeholder="Title" name="title" required />
+    <input placeholder="Description" name="description" required />
+    <button type="submit">Add Todo</button>
   </form>
 </main>
 
