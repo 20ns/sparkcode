@@ -1,15 +1,6 @@
-Create the foundation of a to-do list application, focusing on backend functionality and essential frontend interaction. Your task is implementing a RESTful API using Go and a simple TypeScript interface using [Svelte](https://svelte.dev/). The goal is to be able to be able to list and add todos.
+A small to-do app with a Go API and a TypeScript interface built with [Svelte](https://svelte.dev/).
 
-You are not expected to know Go, Svelte, or OpenAPI. Part of the challenge is to see how quickly you can adapt and pick new things up!
-
-The backend needs to meet the openapi spec which is within the backend folder. You need to create the list endpoint and the add todo endpoint. The storage system is in-memory.
-
-The frontend already has functionality to list the todos, your task is to complete the form which submits todo's to the backend system.
-
-Please use this repo as your base. You can click "Use this template" in the top right on GitHub, then "Create a new repository". Commit and push your code so it can reviewed by us. Please get as far as you can within 2 hours.
-
-If you find anything in the template you would like to improve, please feel free to!
-
+The API lists and adds todos using in-memory storage. The frontend displays them and submits new entries. The OpenAPI specification is in `backend/`.
 
 ## Setup
 
